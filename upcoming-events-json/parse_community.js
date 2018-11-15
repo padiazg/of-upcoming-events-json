@@ -27,26 +27,18 @@ module.exports = markdowm => new Promise((resolve, reject) => {
         // parse the table row into fields
         const fields = regex_fields.exec(event);
         if (fields) {
-            //"12-May-2018" => "2018-05-12"
             const _date = moment(fields[5].trim(), "DD-MMM-YYYY");
-            const date = _date.isValid() ? _date.format("YYYY-MM-DD") : "";
-            events.push({
-                event: fields[1],
-                link: fields[2] ? fields[2].replace("(","").replace(")","") : "",
-                speaker: fields[3].trim(),
-                location: fields[4].trim(),
-                date
-            })
-        }
-        // else {
-        //     console.log(event);
-        //     console.log(fields);
-        // }
+            if (_date.isValid()) { // has this format: "12-May-2018"?
+                events.push({
+                    event: fields[1],
+                    link: fields[2] ? fields[2].replace("(","").replace(")","") : "",
+                    speaker: fields[3].trim(),
+                    location: fields[4].trim(),
+                    date: _date.format("YYYY-MM-DD")    //"12-May-2018" => "2018-05-12"
+                })
+            } // if (_date.isValid()) ...
+        } // if (fields) ...
     } // while (event_block = regex_event.exec(events_block)) ...
-
-    if (events.lentgh > 1) {
-        events.shift(); // drop first element = parsed title
-    }
 
     resolve(events);
 });
