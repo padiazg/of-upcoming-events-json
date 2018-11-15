@@ -1,0 +1,8 @@
+provider:
+  name: faas
+  gateway: http://localhost:31112
+functions:
+  upcoming-events-json:
+    lang: node
+    handler: ./upcoming-events-json
+    image: padiazg/upcoming-events-json:latest
