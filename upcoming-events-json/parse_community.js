@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 // matches the hole block containing the events table
 const regex_events_block = /(#### Events in 2018\n.*\n\n(\|.*?\|.*?\|.*?\|.*?\|\n)+)/m
 
@@ -25,12 +27,15 @@ module.exports = markdowm => new Promise((resolve, reject) => {
         // parse the table row into fields
         const fields = regex_fields.exec(event);
         if (fields) {
+            //"12-May-2018" => "2018-05-12"
+            const _date = moment(fields[5].trim(), "DD-MMM-YYYY");
+            const date = _date.isValid() ? _date.format("YYYY-MM-DD") : "";
             events.push({
                 event: fields[1],
                 link: fields[2] ? fields[2].replace("(","").replace(")","") : "",
                 speaker: fields[3].trim(),
                 location: fields[4].trim(),
-                date: fields[5].trim()
+                date
             })
         }
         // else {
