@@ -6,8 +6,7 @@ const regex_events_block = /(#### Events in 2018\n.*\n\n(\|.*?\|.*?\|.*?\|.*?\|\
 // Matches a line of the table
 const regex_event = /(\|.*?\|.*?\|.*?\|.*?\|\n)/mg
 
-/* Examples of matching items, the Event name and description field can be
-a plain text or a link
+/* Examples of matching items, the Event name and description field can be a plain text or a link
 | [KubeCon + CloudNativeCon: Digital Transformation of Vision Banco Paraguay with Serverless Functions](https://sched.co/GraO) | Alex Ellis & Patricio Diaz | Seattle, WA | 13-Dec-2018 |
 | Exploring the serverless framework with OpenFaaS @ DevFest Nantes | [Emmanuel Lebeaupin](https://twitter.com/elebeaup) | Nantes, France | 19-Oct-2018 |
 | Serverless OpenFaaS and Python Workshop @ Agile Peterborough        | Alex Ellis, Richard Gee  | Peterborough, UK | 12-May-2018 |
